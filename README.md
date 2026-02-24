@@ -58,10 +58,6 @@ The `planner_agent` will search for live match data and generate a plan. The `an
 - **Tasks**: Update `tasks.py` to adjust the work flow or add new tasks.
 - **Tools**: Add more functions decorated with `@tool` in `my_sports_tools.py` for additional capabilities.
 
-## 📄 License
-
-This project is provided under the MIT License – feel free to modify and share.
 
 ---
 
-*Created by the Agentic AI team.*
