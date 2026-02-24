@@ -1,5 +1,5 @@
 # Sports-Planning-Assistant
-# DeepSeek Sports Planner
+
 
 This repository contains a simple agent-driven sports analysis framework built using the `crewai` library. The system demonstrates how to build a multi-agent crew that can research live sports data, plan analysis steps, validate resource availability, and produce a final execution schedule.
 
