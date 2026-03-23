@@ -1,0 +1,6 @@
+crewai
+crewai-tools
+langchain_community
+langchain_ollama
+streamlit
+litellm
