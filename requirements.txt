@@ -4,3 +4,5 @@ langchain_community
 langchain_ollama
 streamlit
 litellm
+python-dotenv
+crewai[google-genai]

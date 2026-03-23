@@ -10,6 +10,9 @@ COPY requirements.txt .
 # Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Ensure Python doesn't buffer logs (critical for viewing real-time logs in AWS/Cloud)
+ENV PYTHONUNBUFFERED=1
+
 # Copy the rest of your application code
 COPY . .
 

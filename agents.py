@@ -1,16 +1,16 @@
 from crewai import Agent, LLM
 from crewai_tools import SerperDevTool
 from my_sports_tools import check_resource
+import os
 
-# 1. Initialize the Search Tool (Kept at 3 results to protect your 8GB VRAM)
+# 1. Initialize the Search Tool
 search_tool = SerperDevTool(search_kwargs={"num": 3})
 
-# 2. Define the DeepSeek-R1 Brain (Clean setup!)
-local_llm = LLM(
-    model="ollama/deepseek-r1:8b",
-    base_url="http://localhost:11434",
+# 2. Define the Cloud Brain (Swapped to Gemini for Production!)
+cloud_llm = LLM(
+    model="gemini/gemini-2.5-flash",  # <--- Updated to the active 2.5 model
     temperature=0.1,
-    num_ctx=8192 # Large context window to prevent crashes
+    api_key=os.environ.get("AIzaSyATLqdn-yQykP2RDj1-pwG2AcuVEPY2HDc")
 )
 
 # --- THE AGENTS ---
@@ -26,7 +26,7 @@ planner_agent = Agent(
     2. DO NOT attempt to use the 'check_resource' tool. Leave resource checking to the Validator agent.
     3. Do not use conversational filler. Do not use <think> tags in your final output. 
     4. Just execute your search tool using the exact Thought/Action format provided to you.""",
-    llm=local_llm,
+    llm=cloud_llm, # <--- Updated
     tools=[search_tool],
     allow_delegation=False,
     verbose=True,
@@ -40,7 +40,7 @@ analyst_agent = Agent(
     (like MatchStats_DB) are online and ready. You finalize the timeline for execution.
     
     CRITICAL RULES: Adhere strictly to the format required to use tools. Do not loop.""",
-    llm=local_llm,
+    llm=cloud_llm, # <--- Updated
     tools=[check_resource],
     allow_delegation=False,
     verbose=True,
@@ -55,7 +55,7 @@ reporter_agent = Agent(
     
     CRITICAL RULE: DO NOT invent, hallucinate, or make up sports data. If the match stats 
     are missing, you must explicitly state 'Data Unavailable'. Never write about a different sport.""",
-    llm=local_llm,
+    llm=cloud_llm, # <--- Updated
     allow_delegation=False,
     verbose=True
 )

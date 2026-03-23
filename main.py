@@ -2,10 +2,15 @@ import sys
 import os
 import streamlit as st
 import datetime
+from dotenv import load_dotenv
 
-# Essential Environment Keys
-os.environ["OPENAI_API_KEY"] = "NA" # Bypasses the OpenAI check for local Ollama
-os.environ["SERPER_API_KEY"] = "b299bf578e85d4cc8db757207c8ee21926affc84"
+# 1. Load secure keys from the .env file
+load_dotenv()
+
+# 2. Pre-Flight Check: Ensure keys are actually loaded before running
+if not os.getenv("GEMINI_API_KEY") or not os.getenv("SERPER_API_KEY"):
+    st.error("🚨 Missing API Keys! Please add GEMINI_API_KEY and SERPER_API_KEY to your .env file.")
+    st.stop()
 
 from crewai import Crew, Process
 from agents import planner_agent, analyst_agent, reporter_agent
@@ -14,7 +19,7 @@ from tasks import create_tasks
 # --- Streamlit Web UI Setup ---
 st.set_page_config(page_title="Sports Planning Assistant", page_icon="🏆")
 st.title("🏆 AI Sports Planning Assistant")
-st.markdown("Powered by CrewAI and DeepSeek")
+st.markdown("Powered by CrewAI and Gemini")
 
 # Ask for the goal IN THE BROWSER instead of the terminal
 user_goal = st.text_input("Enter your sports analysis goal (e.g., 'Plan a 5K training schedule'):")
