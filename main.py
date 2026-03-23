@@ -12,11 +12,10 @@ load_dotenv()
 if not os.getenv("GEMINI_API_KEY") or not os.getenv("SERPER_API_KEY"):
     st.error("🚨 Missing API Keys! Please add GEMINI_API_KEY and SERPER_API_KEY to your .env file.")
     st.stop()
-=======
 # Essential Environment Keys
-os.environ["OPENAI_API_KEY"] = "NA" # Bypasses the OpenAI check for local Ollama
-os.environ["SERPER_API_KEY"] = "HIDDEN"
->>>>>>> 8897659724f8d22538f193c08b09ac279af9d2a2
+os.environ["OPENAI_API_KEY"] = "AIzaSyATLqdn-yQykP2RDj1-pwG2AcuVEPY2HDc" 
+os.environ["SERPER_API_KEY"] = "b299bf578e85d4cc8db757207c8ee21926affc84"
+
 
 from crewai import Crew, Process
 from agents import planner_agent, analyst_agent, reporter_agent
