@@ -5,7 +5,7 @@ import datetime
 
 # Essential Environment Keys
 os.environ["OPENAI_API_KEY"] = "NA" # Bypasses the OpenAI check for local Ollama
-os.environ["SERPER_API_KEY"] = "b299bf578e85d4cc8db757207c8ee21926affc84"
+os.environ["SERPER_API_KEY"] = "HIDDEN"
 
 from crewai import Crew, Process
 from agents import planner_agent, analyst_agent, reporter_agent
