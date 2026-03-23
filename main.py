@@ -4,27 +4,29 @@ import streamlit as st
 import datetime
 from dotenv import load_dotenv
 
-<<<<<<< HEAD
-# 1. Load secure keys from the .env file
+# 1. Load variables from .env
 load_dotenv()
 
-# 2. Pre-Flight Check: Ensure keys are actually loaded before running
-if not os.getenv("GEMINI_API_KEY") or not os.getenv("SERPER_API_KEY"):
-    st.error("🚨 Missing API Keys! Please add GEMINI_API_KEY and SERPER_API_KEY to your .env file.")
-    st.stop()
-# Essential Environment Keys
-os.environ["OPENAI_API_KEY"] = "AIzaSyATLqdn-yQykP2RDj1-pwG2AcuVEPY2HDc" 
-os.environ["SERPER_API_KEY"] = "b299bf578e85d4cc8db757207c8ee21926affc84"
+# 2. Assign to environment (Bypasses checks and provides keys to CrewAI)
+# If the key isn't in .env, it defaults to None
 
+os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
+
+# 3. Pre-Flight Check: Ensure Serper is actually there
+if not os.environ["SERPER_API_KEY"]:
+    st.error("🚨 SERPER_API_KEY not found in .env file!")
+    st.stop()
 
 from crewai import Crew, Process
 from agents import planner_agent, analyst_agent, reporter_agent
 from tasks import create_tasks
 
+# ... rest of your Streamlit code remains the same ...
+
 # --- Streamlit Web UI Setup ---
 st.set_page_config(page_title="Sports Planning Assistant", page_icon="🏆")
 st.title("🏆 AI Sports Planning Assistant")
-st.markdown("Powered by CrewAI and Gemini")
+st.markdown("Powered by CrewAI and DeepSeek")
 
 # Ask for the goal IN THE BROWSER instead of the terminal
 user_goal = st.text_input("Enter your sports analysis goal (e.g., 'Plan a 5K training schedule'):")
