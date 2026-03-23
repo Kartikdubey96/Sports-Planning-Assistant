@@ -4,6 +4,7 @@ import streamlit as st
 import datetime
 from dotenv import load_dotenv
 
+<<<<<<< HEAD
 # 1. Load secure keys from the .env file
 load_dotenv()
 
@@ -11,6 +12,11 @@ load_dotenv()
 if not os.getenv("GEMINI_API_KEY") or not os.getenv("SERPER_API_KEY"):
     st.error("🚨 Missing API Keys! Please add GEMINI_API_KEY and SERPER_API_KEY to your .env file.")
     st.stop()
+=======
+# Essential Environment Keys
+os.environ["OPENAI_API_KEY"] = "NA" # Bypasses the OpenAI check for local Ollama
+os.environ["SERPER_API_KEY"] = "HIDDEN"
+>>>>>>> 8897659724f8d22538f193c08b09ac279af9d2a2
 
 from crewai import Crew, Process
 from agents import planner_agent, analyst_agent, reporter_agent

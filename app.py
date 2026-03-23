@@ -60,7 +60,7 @@ st.title("🏏 Sports Planning Agent")
 
 with st.sidebar:
     st.title("⚙️ Configuration")
-    os.environ["SERPER_API_KEY"] = st.text_input("Serper API Key", value="b299bf578e85d4cc8db757207c8ee21926affc84", type="password")
+    os.environ["SERPER_API_KEY"] = st.text_input("Serper API Key", value="HIDDEN", type="password")
     st.info("Using Local DeepSeek-R1 (8B) with 3 Agents")
 
 user_goal = st.text_input("What sports data should I analyze?", placeholder="e.g. Latest India vs WI match stats")
